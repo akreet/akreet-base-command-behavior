@@ -1,0 +1,20 @@
+{
+  "name": "akreet-base-command-behavior",
+  "homepage": "https://github.com/akreet/akreet-base-command-behavior",
+  "authors": [
+    "admin@akreet.net"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "akreet-http-util": "akreet/akreet-http-util"
+  }
+}

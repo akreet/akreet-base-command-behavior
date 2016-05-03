@@ -1,0 +1,53 @@
+<script>
+    akreet = window.akreet || {};
+    akreet.BaseCommandBehavior = {
+
+        createRequest: function (options) {
+
+            // default handleAs to json
+            options.handleAs = options.handleAs || 'json';
+
+            // if post add header
+            if(options.method === 'POST') {
+                options.headers = {'content-type': 'application/x-www-form-urlencoded'}
+                options.body = HttpUtil.toQueryString(options.params);
+            } else if (options.method === 'GET') {
+                if(options.params) {
+                    options.url = options.url + '?' + HttpUtil.toQueryString(options.params);
+                }
+            }
+
+            // send the xhr
+            return new Promise(function (resolve, reject) {
+                document.createElement('iron-request').send(options).then(function (request) {
+                    if ('error' === request.response.status) {
+                        this._handleErrors(request.response.errors);
+                    }
+                    resolve(request.response);
+                }.bind(this)).catch(function (error) {
+                    this._handleException(error);
+                    reject(error);
+                }.bind(this));
+            }.bind(this));
+        },
+
+        /**
+         * TODO: should probably throw up an error dialog
+         * @param errors
+         */
+        _handleErrors: function (errors) {
+            errors.forEach(function(error) {
+                console.log('[ERROR] !!!! Received error from server: ' + error);
+                alert(error);
+            });
+        },
+
+        _handleException: function (error) {
+            var message = "Un-expected exception: " + error;
+            throw message;
+        }
+
+
+    }
+
+</script>
