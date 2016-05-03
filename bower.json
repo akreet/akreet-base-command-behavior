@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "akreet-http-util": "akreet/akreet-http-util"
+    "akreet-http-util": "akreet/akreet-http-util",
+    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0"
   }
 }
