@@ -21,7 +21,10 @@
             return new Promise(function (resolve, reject) {
                 document.createElement('iron-request').send(options).then(function (request) {
                     if ('error' === request.response.status) {
-                        this._handleErrors(request.response.errors);
+                        if(this._handleErrors(request.response.errors)) {
+                            reject(request.response.errors);
+                            return;
+                        }
                     }
                     resolve(request.response);
                 }.bind(this)).catch(function (error) {
