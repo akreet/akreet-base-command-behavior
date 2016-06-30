@@ -22,7 +22,6 @@
                 document.createElement('iron-request').send(options).then(function (request) {
                     if ('error' === request.response.status) {
                         if(this._handleErrors(request.response.errors)) {
-                            reject(request.response.errors);
                             return;
                         }
                     }
