@@ -17,6 +17,9 @@
                 }
             }
 
+            // authorize request
+            this._authorize(options);
+
             // send the xhr
             return new Promise(function (resolve, reject) {
                 document.createElement('iron-request').send(options).then(function (request) {
@@ -32,6 +35,20 @@
                 }.bind(this));
             }.bind(this));
         },
+
+        _authorize: function(options) {
+            var idToken = localStorage.getItem('id_token');
+            if(idToken) {
+                var bearerToken = "Bearer " + idToken;
+                if(options.headers) {
+                    options.headers['Authorization'] = bearerToken;
+                } else {
+                    options.headers = { Authorization: bearerToken };
+                }
+            }
+        },
+
+
 
         /**
          * TODO: should probably throw up an error dialog
