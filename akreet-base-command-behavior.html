@@ -51,7 +51,7 @@
             }
         },
 
-        _authorize: function(options) {
+        _akreetAuthorize: function(options) {
             var akreetToken = localStorage.getItem('akreet_token');
             if(akreetToken) {
                 var bearerToken = "Bearer " + akreetToken;
