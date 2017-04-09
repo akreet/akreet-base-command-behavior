@@ -20,6 +20,9 @@
             // authorize request
             this._authorize(options);
 
+            // akreet authorize request
+            this._akreetAuthorize(options);
+
             // send the xhr
             return new Promise(function (resolve, reject) {
                 document.createElement('iron-request').send(options).then(function (request) {
@@ -48,7 +51,17 @@
             }
         },
 
-
+        _authorize: function(options) {
+            var akreetToken = localStorage.getItem('akreet_token');
+            if(akreetToken) {
+                var bearerToken = "Bearer " + akreetToken;
+                if(options.headers) {
+                    options.headers['Akreet-Authorization'] = bearerToken;
+                } else {
+                    options.headers = { 'Akreet-Authorization' : bearerToken };
+                }
+            }
+        },
 
         /**
          * TODO: should probably throw up an error dialog
