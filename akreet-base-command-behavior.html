@@ -75,8 +75,13 @@
         },
 
         _handleException: function (error) {
-            var message = "Un-expected exception: " + error;
-            throw message;
+            akreet.Application.getScope('ERROR').error = error;
+            this.fire('iron-signal', {
+                name: 'page-change',
+                data: {
+                    page: '/error'
+                }
+            });
         }
 
 
