@@ -79,7 +79,9 @@
             this.fire('iron-signal', {
                 name: 'page-change',
                 data: {
-                    page: '/error'
+                    page: '/error',
+                    entryAnimation: 'scale-down-animation',
+                    exitAnimation: 'scale-up-animation'
                 }
             });
         }
