@@ -40,7 +40,7 @@
         },
 
         _authorize: function(options) {
-            var authResult = JSON.parse(localStorage.getItem('authResult') || {});
+            var authResult = JSON.parse(localStorage.getItem('authResult')) || {};
             if(authResult && authResult.idToken) {
                 var bearerToken = "Bearer " + authResult.idToken;
                 if(options.headers) {
